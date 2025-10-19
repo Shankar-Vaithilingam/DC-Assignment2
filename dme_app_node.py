@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+"""
+app.py - user application (autopost-file enabled)
+
+Usage:
+    python3 app.py <my_ip> <my_port> <peer1> <peer2> <file_server_ip:port> [--autopost "text" --autopost-file "/path/to/file" --delay 2]
+"""
 import sys, threading, argparse, time, json, urllib.request, os
 from dme import DME
 from datetime import datetime
@@ -11,6 +18,7 @@ def call_file_server_append(fs_ip, fs_port, node_id, text):
             return resp.read().decode("utf-8")
     except Exception as e:
         return f"ERROR: {e}"
+
 def call_file_server_view(fs_ip, fs_port):
     url = f"http://{fs_ip}:{fs_port}/view"
     try:
@@ -18,6 +26,7 @@ def call_file_server_view(fs_ip, fs_port):
             return resp.read().decode("utf-8")
     except Exception as e:
         return f"ERROR: {e}"
+
 def run_cli(dme, file_server, autopost=None, autopost_file=None, delay=1.0):
     print("Commands: view | post <text> | quit")
     if autopost is not None or autopost_file is not None:
@@ -40,6 +49,7 @@ def run_cli(dme, file_server, autopost=None, autopost_file=None, delay=1.0):
             finally:
                 dme.release_cs()
         threading.Thread(target=ap, daemon=True).start()
+
     while True:
         try:
             raw = input("> ").strip()
@@ -65,6 +75,7 @@ def run_cli(dme, file_server, autopost=None, autopost_file=None, delay=1.0):
                 dme.release_cs()
             continue
         print("Unknown cmd")
+
 def parse_peer(s):
     ip,port = s.split(":")
     pid = f"{ip}:{port}"
@@ -81,8 +92,10 @@ if __name__ == "__main__":
     parser.add_argument("--autopost-file", type=str, help="path to file whose contents will be autoposted")
     parser.add_argument("--delay", type=float, default=1.0, help="delay before autopost")
     args = parser.parse_args()
+
     fs_parts = args.file_server.split(":")
     file_server = (fs_parts[0], int(fs_parts[1]))
+
     raw_peers = [parse_peer(args.peer1), parse_peer(args.peer2)]
     peers = []
     for ip,port,pid in raw_peers:
@@ -90,6 +103,7 @@ if __name__ == "__main__":
         if pid == f"{args.my_ip}:{args.my_port}": continue
         if pid not in [p[2] for p in peers]:
             peers.append((ip,port,pid))
+
     dme = DME(args.my_ip, args.my_port, peers, logfile=f"dme_{args.my_ip.replace('.','_')}_{args.my_port}.log")
     dme.start()
     try:
