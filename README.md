@@ -53,7 +53,7 @@ python3 app.py <IP_Node_B> 5001 <IP_Node_C>:5002 <IP_FILESERVER>:5000 <IP_FILESE
 Node C:
 python3 app.py <IP_Node_C> 5002 <IP_Node_B>:5001 <IP_FILESERVER>:5000 <IP_FILESERVER>:5000
 
-**Commands**
+### Commands
 post <text> - Sends a message (enters critical section using DME).
 view - Displays the shared chat log.
 quit - Exits the CLI.
@@ -61,17 +61,17 @@ quit - Exits the CLI.
 Autopost Feature (for Testing)
 You can use --autopost or --autopost-file to automatically send a post after a short delay - useful for concurrency tests.
 Examples:
-# Autopost simple text
+**Autopost simple text**
 python3 app.py <IP_Node_B> 5001 <IP_Node_C>:5002 <IP_FILESERVER>:5000 <IP_FILESERVER>:5000 --autopost "Hello_from_B" --delay 3
 
-# Autopost a large 1MB file
+**Autopost a large 1MB file**
 python3 app.py <IP_Node_B> 5001 <IP_Node_C>:5002 <IP_FILESERVER>:5000 <IP_FILESERVER>:5000 --autopost-file large_text.txt --delay 3
 
-**Test Cases**
+### Test Cases:
 <img width="685" height="386" alt="image" src="https://github.com/user-attachments/assets/74c04a64-891e-4ac2-adf1-2522c14001cc" />
 ✅ All Passed
 
-References:
+### References:
 Ricart, G. & Agrawala, A. K. (1981) - An Optimal Algorithm for Mutual Exclusion in Computer Networks.
 Communications of the ACM, 24(1), 9-17
 
