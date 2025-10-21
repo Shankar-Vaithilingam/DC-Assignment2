@@ -59,7 +59,9 @@ view - Displays the shared chat log.
 quit - Exits the CLI.
 
 Autopost Feature (for Testing)
-You can use --autopost or --autopost-file to automatically send a post after a short delay - useful for concurrency tests.
+
+You can use --autopost or --autopost-file to automatically send a post after a short delay - useful for concurrency tests.]
+
 Examples:
 **Autopost simple text**
 python3 app.py <IP_Node_B> 5001 <IP_Node_C>:5002 <IP_FILESERVER>:5000 <IP_FILESERVER>:5000 --autopost "Hello_from_B" --delay 3
