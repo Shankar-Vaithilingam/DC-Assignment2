@@ -30,8 +30,8 @@ sudo yum install -y python
 Install NCAT (to test inter node connectivity)
 sudo yum install -y nmap-ncat
 
-Test Connectivity
-# start a listener that accepts one connection
+**Test Connectivity**
+start a listener that accepts one connection
 ncat -l <pott-number>
 
 ping <IP_Node_B>
