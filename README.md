@@ -30,7 +30,7 @@ sudo yum install -y python
 Install NCAT (to test inter node connectivity)
 sudo yum install -y nmap-ncat
 
-**Test Connectivity**
+Test Connectivity
 start a listener that accepts one connection
 ncat -l <pott-number>
 
@@ -40,8 +40,7 @@ nc -zv <IP_Node_B> 5001
 ### Installation
 
 Clone the repo on all three nodes:
-```bash
-git clone [https://github.com/<yourusername>/DC-Assignment2.git](https://github.com/Shankar-Vaithilingam/DC-Assignment2.git)
+git clone https://github.com/Shankar-Vaithilingam/DC-Assignment2.git
 cd DC-Assignment2
 
 **Start File Server (Node A)**
